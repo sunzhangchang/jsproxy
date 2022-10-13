@@ -58,6 +58,8 @@ async function fetchHandler(e) {
   const urlObj = new URL(urlStr)
   const path = urlObj.href.substr(urlObj.origin.length)
 
+  console.log(urlStr)
+
   if (urlObj.protocol === 'http:') {
     urlObj.protocol = 'https:'
     return makeRes('', 301, {
@@ -65,6 +67,8 @@ async function fetchHandler(e) {
       'location': urlObj.href,
     })
   }
+
+  console.log(path)
 
   if (path.startsWith('/http/')) {
     return httpHandler(req, path.substr(6))
